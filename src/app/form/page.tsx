@@ -63,6 +63,11 @@ export default function Form() {
 
   return (
     <div className="content">
+      {/* Enlace para volver a la página de inicio */}
+      <nav>
+        <Link href="/">home</Link>
+        <Link href="/table">table</Link>
+      </nav>
       {/* Campo de entrada para el nombre */}
       <Input
         placeholder="Put your name"
@@ -86,9 +91,6 @@ export default function Form() {
       />
       {/* Botón para enviar el formulario */}
       <Button label="Save" onClick={handleSubmit} />
-
-      {/* Enlace para volver a la página de inicio */}
-      <Link href="/">home</Link>
     </div>
   );
 }

@@ -27,6 +27,12 @@ export default function Table() {
   return (
     <div>
       <h1>Users Table</h1>
+
+      {/* Enlaces */}
+      <nav>
+        <Link href="/">home</Link>
+        <Link href="/form">form</Link>
+      </nav>
       {users.length > 0 ? (
         // Si hay usuarios, muestra una tabla con sus datos
         <table>
@@ -52,9 +58,6 @@ export default function Table() {
         // Si no hay usuarios, muestra un mensaje indicando que no hay datos disponibles
         <p>No users available.</p>
       )}
-
-      {/* Enlace para volver a la página de inicio */}
-      <Link href="/">home</Link>
     </div>
   );
 }
