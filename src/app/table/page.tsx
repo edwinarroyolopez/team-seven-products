@@ -1,24 +1,33 @@
-"use client";
+"use client"; // Directiva de Next.js para usar código del lado del cliente
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "next/link"; // Componente de enlace de Next.js
 
-export default function DataTable() {
-  const [formData, setFormData] = useState<{ name: string; email: string; phone: string }[]>([]);
+export default function Table() {
+  // Estado para almacenar los datos de los usuarios
+  const [users, setUsers] = useState<any[]>([]);
 
+  // Hook useEffect para cargar los datos del Local Storage cuando el componente se monta
   useEffect(() => {
-    // Recuperar los datos del Local Storage al cargar el componente
-    const data = localStorage.getItem("formData");
+    // Obtener los datos del Local Storage al cargar el componente
+    const existingData = localStorage.getItem('formData');
+    // Parsear los datos obtenidos o usar un array vacío si no hay datos
+    const parsedData = existingData ? JSON.parse(existingData) : [];
 
-    if (data) {
-      setFormData([JSON.parse(data)]);
+    // Verificar si parsedData es realmente un array antes de asignarlo al estado
+    if (Array.isArray(parsedData)) {
+      setUsers(parsedData);
+    } else {
+      // Manejar el caso donde el formato de los datos no es el esperado
+      console.error("Unexpected data format in Local Storage");
     }
-  }, []);
+  }, []); // Dependencia vacía significa que el efecto se ejecuta solo una vez después de que el componente se monta
 
   return (
-    <div className="content">
-      <h2>Saved Data</h2>
-      {formData.length > 0 ? (
+    <div>
+      <h1>Users Table</h1>
+      {users.length > 0 ? (
+        // Si hay usuarios, muestra una tabla con sus datos
         <table>
           <thead>
             <tr>
@@ -28,20 +37,25 @@ export default function DataTable() {
             </tr>
           </thead>
           <tbody>
-            {formData.map((data, index) => (
+            {/* Mapea sobre el array de usuarios para crear una fila por cada usuario */}
+            {users.map((user, index) => (
               <tr key={index}>
-                <td>{data.name}</td>
-                <td>{data.email}</td>
-                <td>{data.phone}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        <p>No data available.</p>
+        // Si no hay usuarios, muestra un mensaje indicando que no hay datos disponibles
+        <p>No users available.</p>
       )}
-      
+
+      {/* Enlace para volver a la página de inicio */}
+      <Link href="/">home</Link>
     </div>
   );
 }
+
 
