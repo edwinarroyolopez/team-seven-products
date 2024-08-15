@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link"; // Componente de enlace de Next.js
+import "../page.table.css"
 
 export default function Table() {
   // Estado para almacenar los datos de los usuarios

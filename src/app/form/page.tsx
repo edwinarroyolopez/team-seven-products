@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Input from "../components/ui/Input"; // Componente de entrada personalizada
 import Button from "../components/ui/Button"; // Componente de botón personalizada
 import Link from "next/link"; // Componente de enlace de Next.js
+import "../page.form.css";
 
 export default function Form() {
   // Estado para almacenar los datos del formulario
