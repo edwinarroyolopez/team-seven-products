@@ -1,5 +1,4 @@
 
-
 "use client"; 
 
 import React, { useState } from "react";
@@ -21,8 +20,10 @@ export default function Form() {
     });
   };
 
+      // Guardar en Local Storage
   const handleSubmit = () => {
-    console.log(formData);
+    localStorage.setItem('formData', JSON.stringify(formData));
+    console.log('Data saved to Local Storage:', formData);
   };
 
   return (
@@ -31,14 +32,12 @@ export default function Form() {
         placeholder="Put your name"
         type="text"
         id="name"
-
         onChange={handleInputChange}
       />
       <Input
         placeholder="Put your email"
         type="email"
         id="email"
-
         onChange={handleInputChange}
       />
       <Input
@@ -51,4 +50,6 @@ export default function Form() {
     </div>
   );
 }
+
+
 
